@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+
+        <style>
+            body{
+                background-image: url('/background.jpg');
+            }
+            .numbers,.ac,.operand,.equal{
+                width: 40px;
+                height: 25px;
+                margin: 2px;
+                background-color: transparent;
+                border: solid rgb(187, 100, 199) 2px;
+                border-radius: 48%;
+                color: blue;
+                font-weight: bold;
+                font-size: 16px;
+            }
+            #button-zone{
+                margin-top: 10px;
+                padding-left: 8px;
+            }
+            #space{
+                width: 200px;
+                background-color: transparent;
+                border: solid plum 2px;
+                color: blue;
+            }
+
+            #calculator{
+                margin-top: 80px;
+                margin-left: 240px;
+                border: solid rgba(209, 105, 183, 0.836) 6px ;
+                border-radius: 5%;
+                width: 260px;
+            }
+            #inner{
+                padding: 18px;
+            }
+
+            #header{
+                padding-left: 50px;
+                font-family: roboto;
+                font-weight: bold;
+                font-style: italic;
+                color: rgb(168, 71, 180);
+            }
+
+    
+        </style>
+
+        <script>
+            let operand = ''
+            let input_value = ''
+            let initial_value = 0
+            let final = 0
+
+            function equal_func(){
+                        const final_value = Number(document.querySelector('input').value)
+                    if(operand == '+'){
+                        final = initial_value + final_value                       
+                        document.querySelector('input').value = final
+                    }else if(operand == '-'){
+                        final = initial_value - final_value
+                        document.querySelector('input').value = final
+                    }else if(operand == '*'){
+                        final = initial_value * final_value
+                        document.querySelector('input').value = final
+                    }else{
+                        final = initial_value / final_value
+                        document.querySelector('input').value = final
+
+                    }
+                    }
+            
+
+            function operand_func(){
+                    initial_value = Number(document.querySelector('input').value)
+                    document.querySelector('input').value = ''
+                    input_value = ''
+                }
+                   
+
+            document.addEventListener('DOMContentLoaded', function(){
+                document.querySelectorAll('.numbers').forEach(function(button){
+                    button.onclick = function(){
+                        const value = button.innerHTML
+                        input_value += value
+                        document.querySelector('#space').value = input_value
+                    }
+                })
+
+                document.querySelector('.ac').onclick = function(){
+                    input_value = ''
+                    document.querySelector('#space').value = input_value
+                }
+
+
+                document.querySelectorAll('.operand').forEach(function(button){
+                    button.onclick = function(){
+                        operand = button.innerHTML
+                       operand_func();
+                    }
+                })
+
+                document.querySelector('.equal').onclick = function(){
+                    equal_func();
+                }
+
+                }
+
+            )
+        </script>
+    </head>
+
+    <body>
+        <div id="calculator">
+            <div id="inner">
+
+                <h3 id="header">CALCULATOR</h3>
+
+                <div id="upper-zone">
+                    <input id="space" placeholder="calculator"  autofocus>
+                </div>
+    
+    
+        
+                <div id="button-zone">
+        
+                    <div class="row">
+                        <button class="numbers">0</button>
+                        <button class="numbers">1</button>
+                        <button class="numbers">2</button>
+                        <button class="operand">+</button>
+                       </div>
+                
+                
+                       <div class="row">
+                        <button class="numbers">3</button>
+                        <button class="numbers">4</button>
+                        <button class="numbers">5</button>
+                        <button class="operand">-</button>
+    
+                       </div>
+                
+                       <div class="row">
+                      
+                        <button class="numbers">6</button>
+                        <button class="numbers">7</button>
+                        <button class="numbers">8</button>
+                        <button class="operand">*</button>
+    
+                       </div>
+                
+                       <div class="row">
+    
+                        <button class="numbers">9</button>
+                        <button class="ac">AC</button>
+                        <button class="equal">=</button>
+                        <button class="operand">/</button>
+                       </div>
+        
+        
+                </div>
+    
+
+            </div>
+
+       
+        </div>
+      
+      
+    </body>
+</html>
